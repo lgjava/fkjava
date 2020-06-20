@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>轻量级Java Web企业应用实战――Spring MVC+Spring+MyBatis整合开发 | 疯狂系列图书</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Spring,Spring MVC,MyBatis,Java Web,Java EE,Web,轻量级Java,疯狂Java,李刚,Spring MVC,Spring,MyBatis,SSM" />
+    
+    <meta name="description" content="全面、深入介绍Spring MVC、Spring、MyBatis三大框架整合开发的图书，不仅有三大框架的最佳实践，而且对Spring MVC、MyBatis框架的源代码进行解读。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="轻量级Java Web企业应用实战――Spring MVC+Spring+MyBatis整合开发">
+<meta property="og:url" content="https:&#x2F;&#x2F;fkjava.org&#x2F;2020&#x2F;04&#x2F;01&#x2F;ssm&#x2F;index.html">
+<meta property="og:site_name" content="疯狂系列图书">
+<meta property="og:description" content="全面、深入介绍Spring MVC、Spring、MyBatis三大框架整合开发的图书，不仅有三大框架的最佳实践，而且对Spring MVC、MyBatis框架的源代码进行解读。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;fkjava.org&#x2F;2020&#x2F;04&#x2F;01&#x2F;ssm&#x2F;ssm_cover.png">
+<meta property="article:published_time" content="2020-04-01T13:46:00.000Z">
+<meta property="article:modified_time" content="2020-06-20T16:27:31.531Z">
+<meta property="article:author" content="疯狂软件">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="轻量级Java">
+<meta property="article:tag" content="疯狂Java">
+<meta property="article:tag" content="李刚">
+<meta property="article:tag" content="Spring MVC">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="MyBatis">
+<meta property="article:tag" content="SSM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;fkjava.org&#x2F;2020&#x2F;04&#x2F;01&#x2F;ssm&#x2F;ssm_cover.png">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 4.1.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">疯狂系列图书的网站</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Python/">Python</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/">移动开发</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives/">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags/">标签</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Java/">Java</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-ssm" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        轻量级Java Web企业应用实战――Spring MVC+Spring+MyBatis整合开发
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+      <i class="fa fa-calendar"></i>
+      <a href="/2020/04/01/ssm/" class="article-date">
+         <time datetime="2020-04-01T13:46:00.000Z" itemprop="datePublished">2020-04-01</time>
+      </a>
+    </div>
+
+
+                
+  <div class="article-author">
+    <a href="/author/1">疯狂软件</a>
+  </div>
+
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java-EE/" rel="tag">Java EE</a>, <a class="tag-link" href="/tags/Java-Web/" rel="tag">Java Web</a>, <a class="tag-link" href="/tags/MyBatis/" rel="tag">MyBatis</a>, <a class="tag-link" href="/tags/Spring/" rel="tag">Spring</a>, <a class="tag-link" href="/tags/Spring-MVC/" rel="tag">Spring MVC</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="ssm_cover.png" alt="轻量级Java Web企业应用实战"><br><font color='red'>这不是一份“X天精通Java EE开发”心灵鸡汤，<br>这是一本令人望而生畏的Java Web开发的“砖头书”。</font><br>全面、深入介绍Spring MVC、Spring、MyBatis三大框架整合开发的图书，不仅有三大框架的最佳实践，而且对Spring MVC、MyBatis框架的源代码进行解读，提供微信+QQ答疑群</p>
+<table style="margin-left: auto; margin-right: auto; font-size:11pt">
+    <tr>
+        <td>书名：轻量级Java Web企业应用实战――Spring MVC+Spring+MyBatis整合开发</td>
+        <td>出版社：电子工业出版社</td>
+    </tr>
+    <tr>
+        <td>出版时间：2020-04-01</td>
+        <td>版次：1</td>
+    </tr>
+    <tr>
+        <td>品牌：博文视点</td>
+        <td>ISBN：9787121385001</td>
+    </tr>
+    <tr>
+        <td>页数：724</td>
+        <td>字数：1401000</td>
+    </tr>
+    <tr>
+        <td>包装：平装</td>
+        <td>用纸：胶版纸</td>
+    </tr>
+</table>
+
+<h3 id="购买链接："><a href="#购买链接：" class="headerlink" title="购买链接："></a>购买链接：</h3><table style="margin-left: auto; margin-right: auto; font-size:11pt">
+    <tr>
+        <td><a href="https://item.jd.com/12639633.html" target="_blank" rel="noopener">京东链接</a></td>
+        <td><a href="http://product.dangdang.com/28530960.html" target="_blank" rel="noopener">当当链接</a></td>
+    </tr>
+</table>
+
+<p><img src="ssm_post.jpg" alt="轻量级Java Web企业应用实战）"></p>
+<h3 id="编辑推荐"><a href="#编辑推荐" class="headerlink" title="编辑推荐"></a>编辑推荐</h3><p><font color='red'>《轻量级Java Web企业应用实战――Spring MVC Spring MyBatis整合开发》不是一份“X天精通Java EE开发”的“心灵鸡汤”，这是一本令人生畏的“砖头”书。</font></p>
+<ol>
+<li><p><strong>内容实际，针对性强</strong></p>
+<p> 本书介绍的Java EE应用示例，采用了目前企业流行的开发架构，严格遵守Java EE开发规范，而不是将各种技术杂乱地糅合在一起号称Java EE。读者参考本书的架构，完全可以身临其境地感受企业实际开发。</p>
+</li>
+<li><p><strong>框架源代码级的讲解，深入透彻</strong></p>
+<p> 本书针对Spring MVC、Spring、MyBatis框架核心部分的源代码进行了讲解，不仅能帮助读者真正掌握框架的本质，而且能让读者参考优秀框架的源代码快速提高自己的技术功底。</p>
+<p> 本书介绍的源代码解读方法还可消除开发者对阅读框架源代码的恐惧，让开发者在遇到技术问题时能冷静分析问题，从框架源代码层次找到问题根源。</p>
+</li>
+<li><p><strong>丰富、翔实的代码，面向实战</strong></p>
+<p> 本书是面向实战的技术图书，坚信所有知识点必须转换成代码才能最终变成有效的生产力，因此本书为所有知识点提供了对应的可执行的示例代码。代码不仅有细致的注释，还结合理论对示例进行了详细的解释，真正让读者做到学以致用。</p>
+</li>
+<li><p><strong>提供代码下载、不定期答疑等增值服务</strong></p>
+<p> 扫图书封面折回处的二维码，关注“疯狂图书”，可获得配套代码，和进群与读者朋友交流、作者不定期答疑等服务。</p>
+</li>
+</ol>
+<h3 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h3><p>本书重点介绍了如何整合Spring MVC Spring MyBatis进行开发，内容主要包括三部分：</p>
+<ol>
+<li><p><strong>第一部分</strong></p>
+<p> 这部分介绍Java EE开发的基础知识，以及如何搭建开发环境。</p>
+</li>
+</ol>
+<ol start="2">
+<li><strong>第二部分</strong><br> 这部分详细讲解MyBatis、Spring和Spring MVC三个框架的用法，并从Eclipse IDE的使用上手，一步步带领读者深入三个框架的核心。这部分是本书的核心内容，因此也是重点部分。这部分并不是简单地讲授三个框架的基本用法，而是真正剖析它们在实际开发场景中面临的挑战及最佳实践，并对其诸多关键技术实现提供了源代码解读，这样既能加深读者对框架本质的理解，也能直接提升读者的Java功底。。</li>
+</ol>
+<ol start="3">
+<li><strong>第三部分</strong><br> 这部分示范开发了一个包含7个表，表之间具有复杂的关联映射、继承映射等关系，且业务也相对复杂的工作流案例，帮助读者理论联系实际，将三个框架真正运用到实际开发中。该案例采用目前非常流行、规范的Java EE架构，整个应用分为领域对象层、Mapper（DAO）。层、业务逻辑层、MVC层和视图层，各层之间分层清晰，层与层之间以松耦合的方式组织在一起。该案例既提供了与IDE无关的、基于Ant管理的项目源代码，也提供了基于Eclipse IDE的项目源代码，最大限度地满足读者的需求。</li>
+</ol>
+<p>本书配有读者答疑交流群，读者可通过扫描本书封面勒口上的二维码，按照指引加入，本书作者将通过交流群提供线上不定期答疑服务。</p>
+<h3 id="作者简介"><a href="#作者简介" class="headerlink" title="作者简介"></a>作者简介</h3><p>李刚，十余年的软件开发从业经验，疯狂软件教育中心教学总监。</p>
+<p>疯狂Java实训营创始人，疯狂Java体系原创图书作者。CSDN特邀讲师。</p>
+<p>培训的学生已在腾讯、阿里、华为、IBM、网易、唯品会等名企就职。</p>
+<p>国内著名高端IT技术作家，已出版《疯狂Java讲义》、《疯狂Python讲义》、《疯狂Android讲义》、《轻量级Java EE企业应用实战》、《疯狂iOS讲义（基础篇）（高级篇）》、《疯狂Swift讲义》、《疯狂HTML 5/CSS 3/JavaScript讲义》、《疯狂前端开发讲义》、《疯狂XML讲义》、《经典Java EE企业应用实战》、《疯狂Kotlin讲义》等著作。</p>
+<p>疯狂Java体系图书均已沉淀多年、赢得极高的市场认同、多次重印成为超级畅销图书，并被包括北京大学在内的多所“985”、“211”高校选作教材，部分图书已被翻译成繁体中文版、授权到宝岛台湾。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>经过多年沉淀，Java EE平台已经成为电信、金融、电子商务、保险、证券等各行业的大型应用系统的首选开发平台。在企业级应用的开发选择上，.NET已趋式微，PHP通常只用于开发一些企业展示站点或小型应用，因此这些开发语言、开发平台基本上已无法与Java EE进行对抗了。</p>
+<p>目前轻量级Java EE企业开发平台中最核心的框架是Spring，而MVC框架大致存在两个选择：Spring MVC或Struts 2。由于技术方面的原因，Struts 2也渐趋没落；持久层框架则可选择JPA/Hibernate、MyBatis或Spring Data。</p>
+<p>一般来说，JPA/Hibernate属于全自动的ORM框架，使用它可以非常方便地操作底层数据库，开发者无须直接编写SQL语句；而MyBatis则属于半自动的SQL Mapping框架，它依然要求开发者自己编写SQL语句。MyBatis的主要功能就是帮助开发者执行SQL语句，并将SQL查询结果映射成Java对象。</p>
+<p>由此可见，MyBatis有它自己的优势：上手门槛低。即使是初级的Java开发者，上手MyBatis也很简单——直接把MyBatis当成单表数据库操作工具来用即可（在实际开发中确实有一些项目就是这么干的）；而高级开发者依然可以利用MyBatis的关联映射和继承映射，而且可以灵活地对SQL语句进行优化，从而提高应用的数据库访问性能。</p>
+<p>本书介绍的主要内容就是Spring MVC、Spring和MyBatis这三个框架，其中Spring是核心框架，Spring MVC是目前流行的MVC框架，MyBatis则作为应用的持久层框架。</p>
+<p>虽然初级开发者可以把MyBatis当成单表数据库操作工具来用，但这样的开发者显然并没有真正掌握MyBatis的精髓，本书则会带领读者掌握真正的MyBatis。本书不仅详细介绍了MyBatis框架的基本用法，而且详细讲解了MyBatis复杂的关联映射、继承映射，还详细介绍了MyBatis的一级缓存、二级缓存的功能与用法，深入分析了这些缓存技术的优点和缺点，并对缓存技术的缺点提出了解决方法。</p>
+<p>本书在讲解这些框架时不仅深入介绍了各自的功能与用法，而且直接对这些框架关键部分的源代码进行了解读，阅读框架源代码既能帮助读者真正掌握框架的本质，也能让读者参考优秀框架的源代码快速提高技术功底。</p>
+<p>比如书中介绍VendorDatabaseIdProvider的实现时，直接通过以下源代码进行讲解：<br><img src="image001.jpg" alt="轻量级Java Web企业应用实战）"></p>
+<p>再比如讲解MyBatis的插件实现机制时，本书深入到底层InterceptorChain类的源代码层次进行解读。在书中可以看到如下内容：<br><img src="image003.jpg" alt="轻量级Java Web企业应用实战）"></p>
+<p>本书对框架的源代码进行解读并不是直接贴出框架中某个类的源代码，相信这样做的意义并不大——因为找到并打开这些开源框架的源代码并不难。本书要做的是：带着读者找到各功能实现所对应的方法以及方法之间的调用关系，对方法实现的代码进行讲解，并分析框架在这些方法上的设计理念。</p>
+<p>通过学习本书介绍的这种解读源代码的方法，相信可以消除读者对阅读框架源代码的恐惧心理，让读者在遇到技术问题时能冷静分析问题，从框架源代码层次找到问题根源，从而真正提高自己的技术实力，尽快摆脱遇到技术问题就“面向百度编程”的入门层次。</p>
+<h4 id="本书有什么特点"><a href="#本书有什么特点" class="headerlink" title="本书有什么特点"></a>本书有什么特点</h4><p>本书不是一份“X天精通Java EE开发”的“心灵鸡汤”，本书依然是一本令人生畏的“砖头”书。如果你只想找一本让你轻松、好过的图书，请放过这本书，它不适合你。</p>
+<p>只有当你真的想掌握Spring MVC、Spring、MyBatis，甚至希望学习这三个框架关键部分的源代码实现时，才应该考虑选择这本书。真正掌握本书内容的读者，不仅可以学会Spring MVC、Spring、MyBatis的用法及整合开发，还能掌握这三个框架核心部分的源代码实现。<br>总之，这不是一本“从简单出发”的技术图书，而是一本真正面向技术本身、全面深入编程的图书。虽然本书在讲解上力求简单，并且为代码添加了丰富的注释，并用粗体字标出了程序中的关键代码，但请记住：本书内容并不简单，阅读本书需要读者具有较强的毅力。总结起来，本书具有以下三个典型特征。</p>
+<ol>
+<li><strong>内容实际，针对性强</strong></li>
+</ol>
+<p>本书介绍的Java EE应用示例，采用了目前企业流行的开发架构，严格遵守Java EE开发规范，而不是将各种技术杂乱地糅合在一起号称Java EE。读者参考本书的架构，完全可以身临其境地感受企业实际开发。</p>
+<ol start="2">
+<li><strong>框架源代码级的讲解，深入透彻</strong></li>
+</ol>
+<p>本书针对Spring MVC、Spring、MyBatis框架核心部分的源代码进行了讲解，不仅能帮助读者真正掌握框架的本质，而且能让读者参考优秀框架的源代码快速提高自己的技术功底。<br>本书介绍的源代码解读方法还可消除开发者对阅读框架源代码的恐惧，让开发者在遇到技术问题时能冷静分析问题，从框架源代码层次找到问题根源。</p>
+<ol start="3">
+<li><strong>丰富、翔实的代码，面向实战</strong></li>
+</ol>
+<p>本书是面向实战的技术图书，坚信所有知识点必须转换成代码才能最终变成有效的生产力，因此本书为所有知识点提供了对应的可执行的示例代码。代码不仅有细致的注释，还结合理论对示例进行了详细的解释，真正让读者做到学以致用。</p>
+<h4 id="本书写给谁看"><a href="#本书写给谁看" class="headerlink" title="本书写给谁看"></a>本书写给谁看</h4><p>如果你已经掌握了Java SE内容，或者已经学完了《疯狂Java讲义》一书，那么你非常适合阅读此书。此外，如果你已有初步的JSP、Servlet基础，甚至对Spring MVC、Spring、MyBatis有所了解，但希望掌握它们在实际开发中的应用，或者深入掌握它们的原理、本质，本书也非常适合你。如果你对Java的掌握还不熟练，则建议遵从学习规律，循序渐进，暂时不要购买、阅读此书，而是按照“疯狂Java学习路线图”中的建议顺序学习。</p>
+
+        </div>
+	<b>本文链接：</b>
+             <a href="https://fkjava.org/2020/04/01/ssm/" target="_blank">https://fkjava.org/2020/04/01/ssm/</a>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "疯狂软件"
+        },
+        "headline": "轻量级Java Web企业应用实战――Spring MVC+Spring+MyBatis整合开发",
+        "image": "https://fkjava.orgssm_cover.png",
+        "keywords": "Spring Spring MVC MyBatis Java Web Java EE",
+        "genre": "Java",
+        "datePublished": "2020-04-01",
+        "dateCreated": "2020-04-01",
+        "dateModified": "2020-06-20",
+        "url": "https://fkjava.org/2020/04/01/ssm/",
+        "description": "这不是一份“X天精通Java EE开发”心灵鸡汤，这是一本令人望而生畏的Java Web开发的“砖头书”。全面、深入介绍Spring MVC、Spring、MyBatis三大框架整合开发的图书，不仅有三大框架的最佳实践，而且对Spring MVC、MyBatis框架的源代码进行解读，提供微信+QQ答疑群
+
+    
+        书名：轻量级Java Web企业应用实战――Spring MVC+",
+        "wordCount": 261
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+<div id="comment-container"></div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我们 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://lgjava.github.io/fkbooksdown/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://www.weibo.com/lgjava/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/10/01/xml3/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">疯狂XML讲义（第3版）</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widget-wrap widget-list">
+	<h3 class="widget-title" style="float:left">扫描关注公众号：</h3>
+	<h3 class="widget-title" style="float:right">添加助手加群或咨询：</h3>
+	<img src="/css/images/fkjava_qr.jpg" alt="疯狂软件" width="135" height="135">&nbsp;
+	<img src="/css/images/assist_qr.png" alt="疯狂小助手" width="135" height="135">
+    </div>
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/04/01/ssm/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/04/01/ssm/ssm_cover.png)" alt="轻量级Java Web企业应用实战――Spring MVC+Spring+MyBatis整合开发" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2020/04/01/ssm/" class="title">轻量级Java Web企业应用实战――Spring MVC+Spring+MyBatis整合开发</a></p>
+                            <p class="item-date"><time datetime="2020-04-01T13:46:00.000Z" itemprop="datePublished">2020-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/10/01/xml3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/10/01/xml3/xml3_cover.png)" alt="疯狂XML讲义（第3版）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2019/10/01/xml3/" class="title">疯狂XML讲义（第3版）</a></p>
+                            <p class="item-date"><time datetime="2019-10-01T13:46:00.000Z" itemprop="datePublished">2019-10-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/01/java5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/01/java5/java5_cover.png)" alt="疯狂Java讲义（第5版）（含DVD光盘一张）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/2019/04/01/java5/" class="title">疯狂Java讲义（第5版）（含DVD光盘一张）</a></p>
+                            <p class="item-date"><time datetime="2019-04-02T02:46:00.000Z" itemprop="datePublished">2019-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/01/python/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/04/01/python/python_cover.png)" alt="疯狂Python讲义" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Python/">Python</a></p>
+                            <p class="item-title"><a href="/2019/04/01/python/" class="title">疯狂Python讲义</a></p>
+                            <p class="item-date"><time datetime="2019-04-02T02:46:00.000Z" itemprop="datePublished">2019-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/03/01/android4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/03/01/android4/android4_cover.png)" alt="疯狂Android讲义（第4版）" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/">移动开发</a></p>
+                            <p class="item-title"><a href="/2019/03/01/android4/" class="title">疯狂Android讲义（第4版）</a></p>
+                            <p class="item-date"><time datetime="2019-03-01T18:46:00.000Z" itemprop="datePublished">2019-03-01</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/">移动开发</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boostrap/" rel="tag">Boostrap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-3/" rel="tag">CSS 3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/" rel="tag">DOM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-5/" rel="tag">HTML 5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAXP/" rel="tag">JAXP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-11/" rel="tag">Java 11</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-EE/" rel="tag">Java EE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Web/" rel="tag">Java Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-%E5%9F%BA%E7%A1%80/" rel="tag">Java 基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AD%A6%E4%B9%A0/" rel="tag">Java学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%AD%A6%E4%B9%A0/" rel="tag">Python学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SAX/" rel="tag">SAX</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/" rel="tag">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema/" rel="tag">Schema</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-MVC/" rel="tag">Spring MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Service/" rel="tag">Web Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E5%BC%80%E5%8F%91/" rel="tag">Web开发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/" rel="tag">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%81%E4%B8%9A%E5%BC%80%E5%8F%91/" rel="tag">企业开发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag">数据分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/" rel="tag">移动开发</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" rel="tag">网络爬虫</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 20px;">Android Studio</a> <a href="/tags/Angular/" style="font-size: 10px;">Angular</a> <a href="/tags/Boostrap/" style="font-size: 10px;">Boostrap</a> <a href="/tags/CSS-3/" style="font-size: 10px;">CSS 3</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/HTML-5/" style="font-size: 10px;">HTML 5</a> <a href="/tags/JAXP/" style="font-size: 10px;">JAXP</a> <a href="/tags/JS/" style="font-size: 20px;">JS</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java-11/" style="font-size: 10px;">Java 11</a> <a href="/tags/Java-EE/" style="font-size: 10px;">Java EE</a> <a href="/tags/Java-Web/" style="font-size: 10px;">Java Web</a> <a href="/tags/Java-%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java 基础</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Java%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">Java学习</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Python%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">Python学习</a> <a href="/tags/SAX/" style="font-size: 10px;">SAX</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Schema/" style="font-size: 10px;">Schema</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/Spring-MVC/" style="font-size: 10px;">Spring MVC</a> <a href="/tags/Web-Service/" style="font-size: 10px;">Web Service</a> <a href="/tags/Web%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Web开发</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/%E4%BC%81%E4%B8%9A%E5%BC%80%E5%8F%91/" style="font-size: 10px;">企业开发</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">数据分析</a> <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/" style="font-size: 20px;">移动开发</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" style="font-size: 10px;">网络爬虫</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://www.crazyit.org" target="_blank" rel="noopener">疯狂Java联盟</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2001-2020 疯狂软件</p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: 'dfdf40aec0119b7ee2e6',
+        clientSecret: '384732e1b3eaf1e1480d3748c57cb6bffeb5092c',
+        id: '98353f3022623c574ae1dc86e01fd5fe',
+        repo: 'fkjava',
+        owner: 'lgjava',
+        admin: "lgjava"
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
